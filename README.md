@@ -1,2 +1,1 @@
-# Installer_Docker_to_Ubuntu
-This repository consists in the realization of a bash script that installs docker and docker compose on an Ubuntu server. 
+<h1 style="color:Orange">Instalador de Docker y Docker Compose💻🐋 </h1>
