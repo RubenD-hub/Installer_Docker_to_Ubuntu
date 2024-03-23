@@ -24,12 +24,13 @@
 **Docker Compose** es una herramienta que te permite ejecutar entornos de aplicaciones de varios contenedores basados en definiciones establecidas en un archivo **YAML**. Utiliza definiciones de servicio para crear entornos totalmente personalizables con varios contenedores que pueden compartir redes y volúmenes de datos.
 
 </br>
-Por lo tanto, Docker es una herramienta que nos ayudara a crear contenedores donde se alojaran nuestras aplicaciones y servicios ocupados. Ademas, Docker compose nos permitirá gestionar los contenedores que conforman nuestra aplicación, como la comunicación entre contenedores, almacenamiento, demanda, y otros. 
-Otra gran ventaja es poder compartir nuestro proyecto con otras personas, sin preocuparnos en una ejecución fallida por sistemas operativos diferentes, dependencias, recurso, entre otros.
+
+> 👌 Por lo tanto, Docker es una herramienta que nos ayudara a crear contenedores donde se alojaran nuestras aplicaciones y servicios ocupados. Ademas, Docker compose nos permitirá gestionar los contenedores que conforman nuestra aplicación, como la comunicación entre contenedores, almacenamiento, demanda, y otros.
+> Otra gran ventaja es poder compartir nuestro proyecto con otras personas, sin preocuparnos en una ejecución fallida por sistemas operativos diferentes, dependencias, recurso, entre otros.
 
 ## Instalación de Docker y Docker Compose 👨‍💻
 
-Para la instalación se ejecutara un Bash Script el cual contendrá los comandos que se ejecutaran para una instalación correcta de Docker en un servidor **Ubuntu 20.04.**
+Para la instalación se ejecutara un Bash Script el cual contendrá los comandos que se ejecutaran para una instalación correcta de Docker en un servidor **Ubuntu 20.04**, Docker Compose es un plugin incluido en la instalación de Docker por lo que no se tendrá que hacer algún otro paso.
 
 **Prerrequisitos**📝:
 
@@ -50,13 +51,13 @@ Para la instalación se ejecutara un Bash Script el cual contendrá los comandos
     bash Docker_Installer.sh
    ```
 5. Se ejecutaran los comandos del script.
-   ![Ejecucion del Script]()
+   ![Ejecución del Script]()
 6. Terminada la ejecución verifica la correcta instalación con el siguiente comando.
    ```bash
    sudo systemctl status docker
    ```
    Una instalación exitosa se vería así:
-   ![Instalacion Exitosa]()
+   ![Instalación Exitosa]()
 
 ## Explicación de los comandos del Script 🔎
 
@@ -79,8 +80,37 @@ Para la instalación se ejecutara un Bash Script el cual contendrá los comandos
       read -r -s -p " Presiona enter para continuar..."
    ```
 
-2. Acontinuacion se desinstalaran los paquetes en conflicto de posibles versiones de docker instaladas anteriormente.
+2. Acontinuación se desinstalaran los paquetes en conflicto de posibles versiones de docker instaladas anteriormente.
    ```bash
-   printf  "$(tput setaf 214) \n\n 2-->  Se desinstalaran paquetes de versiones anteriores de Docker \n para evitar posibles conflictos \n"
    for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
+   ```
+3. Ahora se instalaran algunos paquetes de requisitos previos que permiten a apt utilizar paquetes a través de HTTPS:
+   ```bash
+   sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+   ```
+4. Se añade la clave GPG del repositorio oficial de Docker a tu sistema
+   ```bash
+   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+   ```
+5. Se agrega el repositorio de Docker a las fuentes de APT
+   ```bash
+   sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+   ```
+6. Asegurarse que se esta instalando desde el repositorio de Docker en lugar del repositorio predeterminado de Ubuntu
+   ```bash
+   apt-cache policy docker-ce
+   ```
+7. Se instala Docker:
+
+   ```bash
+   sudo apt install docker-ce
+   ```
+
+   > Una vez terminado, se habrá instalado exitosamente Docker y Docker compose.
+   > Los siguientes pasos son para ejecutar el comando `Docker` sin `sudo`.
+
+8. Se añade el nombre de usuario al grupo docker y se reinicia la session de shell
+   ```bash
+   sudo usermod -aG docker ${USER}
+   su - ${USER}
    ```
