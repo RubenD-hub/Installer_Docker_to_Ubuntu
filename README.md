@@ -10,6 +10,7 @@
   - [Instalación de Docker y Docker Compose 👨‍💻](#instalación-de-docker-y-docker-compose-)
     - [Pasos para la instalación 👣](#pasos-para-la-instalación-)
   - [Explicación de los comandos del Script 🔎](#explicación-de-los-comandos-del-script-)
+  - [Comprobar instalación 👍](#comprobar-instalación-)
 
 </details>
 
@@ -114,3 +115,23 @@ Para la instalación se ejecutara un Bash Script el cual contendrá los comandos
    sudo usermod -aG docker ${USER}
    su - ${USER}
    ```
+
+## Comprobar instalación 👍
+
+Para comprobar una instalación exitosa podemos ejecutar los siguientes comandos en la shell
+
+```bash
+docker --version
+```
+
+```bash
+docker compose --version
+```
+
+También podemos comprobar su funcionamiento de docker levantando un contenedor
+
+```bash
+docker run hello-world
+```
+
+Si se necesita verificar también el funcionamiento de Docker Compose podemos realizar el pequeño ejemplo del siguiente [enlace](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04#:~:text=with%20this%20tool.-,Step%202%20%E2%80%94%20Setting%20Up%20a%20docker%2Dcompose.yml%20File,-To%20demonstrate%20how).
