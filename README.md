@@ -11,6 +11,7 @@
     - [Pasos para la instalación 👣](#pasos-para-la-instalación-)
   - [Explicación de los comandos del Script 🔎](#explicación-de-los-comandos-del-script-)
   - [Comprobar instalación 👍](#comprobar-instalación-)
+  - [Desinstalar Docker ❌](#desinstalar-docker-)
 
 </details>
 
@@ -135,3 +136,22 @@ docker run hello-world
 ```
 
 Si se necesita verificar también el funcionamiento de Docker Compose podemos realizar el pequeño ejemplo del siguiente [enlace](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04#:~:text=with%20this%20tool.-,Step%202%20%E2%80%94%20Setting%20Up%20a%20docker%2Dcompose.yml%20File,-To%20demonstrate%20how).
+
+## Desinstalar Docker ❌
+
+En el mismo repositorio se encuentra un script para desinstalar Docker, el cual eliminara docker y complementos instalados en el servidor, ademas con la opción de eliminar o no, contenedores, volumes e imágenes que se encuentren en el servidor (si se encuentran guardados en la ruta predeterminada).
+
+1. Abrir el repositorio y buscar el archivo **_Docker_Uninstaller.sh_**
+   ![Contenido del Repositorio]()
+2. Ejecutar el desinstalador con el siguiente comando.
+   ```bash
+    bash Docker_Uninstaller.sh
+   ```
+3. Se ejecutaran los comandos del script.
+   ![Ejecución del Script]()
+4. Terminada la ejecución verifica la correcta desinstalacion con el siguiente comando.
+   ```bash
+   sudo docker --version
+   ```
+   Una desinstalacion exitosa se vería así:
+   ![Instalación Exitosa]()
