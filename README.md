@@ -1,19 +1,43 @@
-# Instalador de Docker en Ubuntu💻🐋
+<br>
+<div align="center">
+
+   <img src="img/Logo.png" alt="Logo" width="600" >
+
+   <h1>Instalador de Docker en Ubuntu💻🐋</h1>
+
+   <p>
+      Una herramienta rapida para la instalacion de docker en Ubuntu!
+      <br>
+      <br>
+      <a href="https://docs.docker.com/">Docker Doc</a>
+      ·
+      <a href="https://www.spainclouds.com/blog/docker-guia-rapida">Docker Guía</a>
+      ·
+      <a href="https://anderfernandez.com/blog/tutorial-docker-compose/">Compose Doc</a>
+   </p>
+</div>
 
 <details>
   <summary><b>Contenido</b></summary>
 
-- [Instalador de Docker en Ubuntu💻🐋](#instalador-de-docker-en-ubuntu)
-  - [Introducción 🧐](#introducción-)
-    - [🔗¿Qué es Docker?](#qué-es-docker)
-    - [🔗¿Qué es Docker Compose?](#qué-es-docker-compose)
-  - [Instalación de Docker y Docker Compose 👨‍💻](#instalación-de-docker-y-docker-compose-)
-    - [Pasos para la instalación 👣](#pasos-para-la-instalación-)
-  - [Explicación de los comandos del Script 🔎](#explicación-de-los-comandos-del-script-)
-  - [Comprobar instalación 👍](#comprobar-instalación-)
-  - [Desinstalar Docker ❌](#desinstalar-docker-)
+- [Acerca del Proyecto](#acerca-del-proyecto)
+- [Introducción 🧐](#introducción-)
+  - [🔗¿Qué es Docker?](#qué-es-docker)
+  - [🔗¿Qué es Docker Compose?](#qué-es-docker-compose)
+- [Instalación de Docker y Docker Compose 👨‍💻](#instalación-de-docker-y-docker-compose-)
+  - [Pasos para la instalación 👣](#pasos-para-la-instalación-)
+- [Explicación de los comandos del Script 🔎](#explicación-de-los-comandos-del-script-)
+- [Comprobar instalación 👍](#comprobar-instalación-)
+- [Desinstalar Docker ❌](#desinstalar-docker-)
+  - [Explicación de los comandos 🔎](#explicación-de-los-comandos-)
+- [Otros recursos](#otros-recursos)
 
 </details>
+
+## Acerca del Proyecto
+
+Este proyecto consiste en la creación de un instalador (bash script) de Docker para un servidor Ubuntu 20.04, Ademas en el mismo repositorio se cuenta con las instrucciones para su uso y también cuenta con una explicación sobre los comandos contenidos en el instalador.
+También se explica el uso y explicación de un desisntalador de docker, el cual esta incluido en el repositorio.
 
 ## Introducción 🧐
 
@@ -47,19 +71,21 @@ Para la instalación se ejecutara un Bash Script el cual contendrá los comandos
 2. Clonar este repositorio.
    ![Clonar Repositorio](img/image-1.png)
 3. Abrir el repositorio y buscar el archivo **_Docker_Installer.sh_**
-   ![Contenido del Repositorio]()
+   ![Contenido del Repositorio](img/image-2.png)
 4. Ejecutar el instalador con el siguiente comando.
    ```bash
     bash Docker_Installer.sh
    ```
 5. Se ejecutaran los comandos del script.
-   ![Ejecución del Script]()
+   ![Ejecución del Script](img/Instalacion.gif)
 6. Terminada la ejecución verifica la correcta instalación con el siguiente comando.
    ```bash
    sudo systemctl status docker
+   ó
+   sudo service docker status
    ```
    Una instalación exitosa se vería así:
-   ![Instalación Exitosa]()
+   ![Instalación Exitosa](img/image-3.png)
 
 ## Explicación de los comandos del Script 🔎
 
@@ -119,22 +145,35 @@ Para la instalación se ejecutara un Bash Script el cual contendrá los comandos
 
 ## Comprobar instalación 👍
 
-Para comprobar una instalación exitosa podemos ejecutar los siguientes comandos en la shell
+Para comprobar una instalación exitosa y comprobar que no es necesario el comando `sudo` antes de un comando **docker**, podemos ejecutar los siguientes comandos en la shell.
+Para Docker
 
 ```bash
 docker --version
 ```
 
+ó
+
 ```bash
-docker compose --version
+sudo systemctl status docker
 ```
 
+![Version de docker](img/image-4.png)
+
+Para comprobar la instalación de Docker compose
+
+```bash
+docker-compose --version
+```
+
+![version de docker compose](img/image-5.png)
 También podemos comprobar su funcionamiento de docker levantando un contenedor
 
 ```bash
 docker run hello-world
 ```
 
+![Contenedor ejecutado](img/image-6.png)
 Si se necesita verificar también el funcionamiento de Docker Compose podemos realizar el pequeño ejemplo del siguiente [enlace](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04#:~:text=with%20this%20tool.-,Step%202%20%E2%80%94%20Setting%20Up%20a%20docker%2Dcompose.yml%20File,-To%20demonstrate%20how).
 
 ## Desinstalar Docker ❌
@@ -142,16 +181,67 @@ Si se necesita verificar también el funcionamiento de Docker Compose podemos re
 En el mismo repositorio se encuentra un script para desinstalar Docker, el cual eliminara docker y complementos instalados en el servidor, ademas con la opción de eliminar o no, contenedores, volumes e imágenes que se encuentren en el servidor (si se encuentran guardados en la ruta predeterminada).
 
 1. Abrir el repositorio y buscar el archivo **_Docker_Uninstaller.sh_**
-   ![Contenido del Repositorio]()
+   ![Contenido del Repositorio](img/image-2.png)
 2. Ejecutar el desinstalador con el siguiente comando.
    ```bash
     bash Docker_Uninstaller.sh
    ```
 3. Se ejecutaran los comandos del script.
-   ![Ejecución del Script]()
+   ![Ejecución del Script](img/Desinstalacion.gif)
 4. Terminada la ejecución verifica la correcta desinstalacion con el siguiente comando.
    ```bash
    sudo docker --version
    ```
    Una desinstalacion exitosa se vería así:
-   ![Instalación Exitosa]()
+   ![Desinstalacion Exitosa](img/image-7.png)
+
+### Explicación de los comandos 🔎
+
+1. Como en el script de instalación, tenemos un mensaje de inicio.
+
+   ```bash
+   #!/bin/bash
+   clear
+   msg="
+         ==================================================
+                  Desinstalador de Docker y recursos
+         ==================================================
+   "
+
+   tput setaf 10;
+   printf "$msg"
+   tput setaf 7;
+
+   printf "$(tput setaf 202) \n\n Se iniciara la Desinstalacion de Docker y Recursos\n"
+   read -r -s -p " Presiona enter para continuar..."
+
+   ```
+
+2. Acontinuación se desinstalara Docker y todos los elemento que este contenga
+   ```bash
+   sudo apt-get purge docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras
+   ```
+3. Lo siguiente es una opción sobre eliminar los contenedores, imágenes y volúmenes que puedan estar almacenados en la ruta predeterminada de Docker
+   ```bash
+   PS3='Ingrese su opción: '
+   select opt in Si No
+   do
+      case $REPLY in
+         "1")
+               echo "Se procede a eliminar los elementos..."
+               sudo rm -rf /var/lib/docker
+               sudo rm -rf /var/lib/containerd
+               break
+               ;;
+         "2")
+               echo "Se mantendrán los elementos.."
+               break
+               ;;
+         *) echo "Opción invalida";;
+      esac
+   done
+   ```
+
+## Otros recursos
+
+-
